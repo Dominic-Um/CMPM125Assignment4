@@ -79,6 +79,16 @@ public class GuardAI : MonoBehaviour
         rend.material.color = Color.red;
         if (player == null) return;
 
+        PlayerDisguise disguise = player.GetComponent<PlayerDisguise>();
+        if (disguise != null && disguise.IsDisguised)
+        {
+            PlayerInZone = false;
+            StartInvestigate(); 
+            return;
+        }
+
+        agent.SetDestination(player.position);
+
         agent.SetDestination(player.position);
 
         if (CanSeePlayer() || PlayerInZone)
@@ -126,6 +136,17 @@ public class GuardAI : MonoBehaviour
 
     void DetectPlayer(float visionThreshold)
     {
+        if (player != null)
+        {
+            PlayerDisguise disguise = player.GetComponent<PlayerDisguise>();
+            if (disguise != null && disguise.IsDisguised)
+            {
+                PlayerInZone = false;
+                visionTimer = 0f;
+                return;
+            }
+        }
+
         if (PlayerInZone)
         {
             ForceChase();
@@ -209,6 +230,10 @@ public class GuardAI : MonoBehaviour
     bool CanSeePlayer()
     {
         if (player == null) return false;
+
+        PlayerDisguise disguise = player.GetComponent<PlayerDisguise>();
+        if (disguise != null && disguise.IsDisguised)
+            return false;
 
         Vector3 eyePos = transform.position + Vector3.up * eyeHeight;
         Vector3 playerPos = player.position + Vector3.up * playerTargetHeight;
