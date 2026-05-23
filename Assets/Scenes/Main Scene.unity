@@ -1343,11 +1343,11 @@ MonoBehaviour:
   playerTargetHeight: 1
   patrolSpeed: 2
   chaseSpeed: 5
-  visionChaseTime: 0.001
+  visionChaseTime: 0.1
   loseSightTime: 1.5
   catchPlayerTime: 2.5
   investigateWaitTime: 3
-  fastDetectTime: 0.5
+  fastDetectTime: 0
   PlayerInZone: 0
 --- !u!195 &575703105
 NavMeshAgent:

@@ -15,11 +15,11 @@ public class GuardAI : MonoBehaviour
     public float patrolSpeed = 2f;
     public float chaseSpeed = 5f;
 
-    public float visionChaseTime = 1f;
+    public float visionChaseTime = 0.001f;
     public float loseSightTime = 1.5f;
     public float catchPlayerTime = 3f;
     public float investigateWaitTime = 3f;
-    public float fastDetectTime = 0.5f;
+    public float fastDetectTime = 0f;
 
     public bool PlayerInZone = false;
 
